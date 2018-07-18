@@ -13,6 +13,14 @@ public class ShitWishOrder {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long order_id;
 
+    private String zipcode;
+
+    private String country;
+
+    private String city;
+
+    private String street;
+
     private String user_id;
 
     @ElementCollection(targetClass = Integer.class)
@@ -24,8 +32,11 @@ public class ShitWishOrder {
     public ShitWishOrder() {
     }
 
-    public ShitWishOrder(String user_id, Map<Integer, Integer> products) {
-        this.user_id = user_id;
+    public ShitWishOrder(String zipcode, String country, String city, String street, Map<Integer, Integer> products) {
+        this.zipcode = zipcode;
+        this.country = country;
+        this.city = city;
+        this.street = street;
         this.products = products;
     }
 
@@ -43,6 +54,26 @@ public class ShitWishOrder {
 
     public Map<Integer, Integer> getProducts() {
         return products;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getUser_id() {
+        return user_id;
     }
 
     public void setOrder_id(long order_id) {
@@ -75,5 +106,25 @@ public class ShitWishOrder {
         products+="]";
         ret+="{'id':"+this.getOrder_id()+",'user_id:'"+this.getUser_id()+products;
         return ret;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 }
