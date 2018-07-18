@@ -18,9 +18,9 @@ public class OrderController {
     ShitWishOrderService shitWishOrderService;
 
     @GetMapping(value = "/orders/{id}")
-    public String getOrder(@PathVariable("id") Long id) {
+    public ShitWishOrder getOrder(@PathVariable("id") Long id) {
         ShitWishOrder order = shitWishOrderService.findById(id);
-        return "majd json";
+        return order;
     }
 
     @PostMapping(value = "/orders")

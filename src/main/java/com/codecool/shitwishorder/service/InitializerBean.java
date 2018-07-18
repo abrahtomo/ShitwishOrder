@@ -10,8 +10,8 @@ import java.util.Map;
 public class InitializerBean {
 
     public InitializerBean(ShitWishOrderService shitWishOrder) {
-        Map orderMap = new HashMap<Integer, Integer>();
+        /*Map orderMap = new HashMap<Integer, Integer>();
         orderMap.put(3, 3);
-        shitWishOrder.saveOrder(new ShitWishOrder(1, orderMap));
+        shitWishOrder.saveOrder(new ShitWishOrder(1, orderMap));*/
     }
 }
