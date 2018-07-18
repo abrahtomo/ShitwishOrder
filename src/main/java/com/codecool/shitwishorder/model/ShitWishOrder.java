@@ -21,6 +21,8 @@ public class ShitWishOrder {
 
     private String street;
 
+    private String user_id;
+
     @ElementCollection(targetClass = Integer.class)
     @CollectionTable(name = "Products")
     @MapKeyColumn(name="product_id")
@@ -62,6 +64,10 @@ public class ShitWishOrder {
         return street;
     }
 
+    public String getUser_id() {
+        return user_id;
+    }
+
     public void setOrder_id(long order_id) {
         this.order_id = order_id;
     }
@@ -84,5 +90,9 @@ public class ShitWishOrder {
 
     public void setStreet(String street) {
         this.street = street;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 }
