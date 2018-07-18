@@ -9,9 +9,9 @@ import java.util.Map;
 @Component
 public class InitializerBean {
 
-    public InitializerBean(ShitWishOrderService shitWishOrder) {
+    /*public InitializerBean(ShitWishOrderService shitWishOrder) {
         Map orderMap = new HashMap<Integer, Integer>();
         orderMap.put(3, 3);
         shitWishOrder.saveOrder(new ShitWishOrder(1, orderMap));
-    }
+    }*/
 }

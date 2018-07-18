@@ -23,7 +23,10 @@ public class OrderController {
         ShitWishOrder order = shitWishOrderService.findById(id);
         JSONObject entity = new JSONObject();
         entity.put("id", order.getOrder_id());
-        entity.put("user_id", order.getUser_id());
+        entity.put("zipcode", order.getZipcode());
+        entity.put("country", order.getCountry());
+        entity.put("city", order.getCity());
+        entity.put("street", order.getStreet());
         List<JSONObject> products = new ArrayList<JSONObject>();
         for (Map.Entry<Integer, Integer> entry: order.getProducts().entrySet()) {
             JSONObject lineItem = new JSONObject();
@@ -36,14 +39,16 @@ public class OrderController {
     }
 
     @PostMapping(value = "/orders")
-    public String postOrder(@RequestParam("user_id") Long userID, @RequestParam("products") String productString) {
+    public String postOrder(@RequestParam("zipcode") String zipcode, @RequestParam("country") String country,
+                            @RequestParam("city") String city, @RequestParam("street") String street,
+                            @RequestParam("products") String productString) {
         Map<Integer, Integer> products = new HashMap<Integer, Integer>();
         JSONArray productJSON = new JSONArray(productString);
         for (Object object: productJSON) {
             JSONObject jsonObject = (JSONObject) object;
             products.put(jsonObject.getInt("id"), jsonObject.getInt("amount"));
         }
-        shitWishOrderService.saveOrder(new ShitWishOrder(userID, products));
+        shitWishOrderService.saveOrder(new ShitWishOrder(zipcode, country, city, street, products));
         return "oksa?";
     }
 }
