@@ -9,7 +9,6 @@ import java.util.Map;
 @Table(name = "SWORDER")
 public class ShitWishOrder {
 
-    @JsonProperty("id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long order_id;
