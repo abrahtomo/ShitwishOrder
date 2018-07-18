@@ -23,7 +23,8 @@ public class Authenticator {
     }
 
 
-    public boolean authorize(String token) {
+    public String getTokenString(String token) {
+        String ret = "";
         try {
             JwtConsumer jwtConsumer = new JwtConsumerBuilder()
                     .setRequireExpirationTime()
@@ -40,13 +41,16 @@ public class Authenticator {
             JwtClaims claims = jwtConsumer.processToClaims(token);
             if (claims.getExpirationTime().getValueInMillis() < new Date().getTime()) {
                 System.out.println("Token has already expired!");
-                return false;
+                ret = "Token Expired";
+            } else {
+                ret = claims.getSubject();
             }
         } catch (InvalidJwtException | MalformedClaimException e) {
             System.out.println("Invalid token!\n" + e);
-            return false;
+            ret = "Invalid Token";
         }
-        return true;
+
+        return ret;
     }
 }
 

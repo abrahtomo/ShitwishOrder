@@ -18,20 +18,27 @@ public class OrderController {
     ShitWishOrderService shitWishOrderService;
 
     @GetMapping(value = "/orders/{id}")
-    public String getOrder(@PathVariable("id") Long id) {
-        ShitWishOrder order = shitWishOrderService.findById(id);
-        return "majd json";
+    public String getOrder(@PathVariable("id") Long id, @RequestHeader Map<String, String> header) {
+        ShitWishOrder ret = shitWishOrderService.findById(id, header.get("Authorization"));
+        if  (ret!=null){
+            return ret.jsonStringBuilder();
+        }
+        return "{'error': 'no such order'}";
     }
 
     @PostMapping(value = "/orders")
-    public String postOrder(@RequestParam("user_id") Long userID, @RequestParam("products") String productString) {
+    public String postOrder(@RequestParam("products") String productString,  @RequestHeader Map<String, String> header) {
         Map<Integer, Integer> products = new HashMap<Integer, Integer>();
         JSONArray productJSON = new JSONArray(productString);
         for (Object object: productJSON) {
             JSONObject jsonObject = (JSONObject) object;
             products.put(jsonObject.getInt("id"), jsonObject.getInt("amount"));
         }
-        shitWishOrderService.saveOrder(new ShitWishOrder(userID, products));
-        return "oksa?";
+        ShitWishOrder returnOrder = new ShitWishOrder(products);
+        ShitWishOrder ret = shitWishOrderService.saveOrder(returnOrder, header.get(("Authorization")));
+        if (ret==null){
+        return "{'error':Token Expired or Invalid Token}";} else {
+            return ret.jsonStringBuilder();
+        }
     }
 }

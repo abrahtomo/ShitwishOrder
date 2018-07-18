@@ -2,14 +2,6 @@ package com.codecool.shitwishorder.service;
 
 import com.codecool.shitwishorder.model.ShitWishOrder;
 import com.codecool.shitwishorder.repository.ShitWishOrderRepository;
-import org.jose4j.jwa.AlgorithmConstraints;
-import org.jose4j.jwk.HttpsJwks;
-import org.jose4j.jws.AlgorithmIdentifiers;
-import org.jose4j.jwt.JwtClaims;
-import org.jose4j.jwt.consumer.InvalidJwtException;
-import org.jose4j.jwt.consumer.JwtConsumer;
-import org.jose4j.jwt.consumer.JwtConsumerBuilder;
-import org.jose4j.keys.resolvers.HttpsJwksVerificationKeyResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +9,9 @@ import java.util.List;
 
 @Service
 public class ShitWishOrderService {
+
+    @Autowired
+    private Authenticator authenticator;
 
 
     @Autowired
@@ -30,12 +25,34 @@ public class ShitWishOrderService {
         shitWishOrderRepository.deleteAll();
     }
 
-    public void saveOrder(ShitWishOrder order){
-        shitWishOrderRepository.save(order);
+    public ShitWishOrder saveOrder(ShitWishOrder order, String token){
+        String strippedToken = stripToken(token);
+        String user_id = authenticator.getTokenString(strippedToken);
+        if (user_id.equals("Token Expired")|| user_id.equals("Invalid Token")){
+            return null;
+        } else {
+        order.setUser_id(user_id);
+        ShitWishOrder ret =  shitWishOrderRepository.save(order);
+        return ret;}
     }
 
-    public ShitWishOrder findById(long id){
-        return shitWishOrderRepository.findOne(id);
+
+    public ShitWishOrder findById(long id, String token){
+
+        String strippedToken = stripToken(token);
+        String user_id = authenticator.getTokenString(strippedToken);
+        if (user_id.equals("Token Expired")|| user_id.equals("Invalid Token")){
+            return null;
+        } else if(shitWishOrderRepository.findOne(id).getUser_id().equals( user_id)){
+            return shitWishOrderRepository.findOne(id);
+        }
+        return null;
+
+
+    }
+
+    private String stripToken(String token){
+        return token.split(" ")[1];
     }
 
 }
