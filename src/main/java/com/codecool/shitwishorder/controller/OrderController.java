@@ -22,11 +22,13 @@ public class OrderController {
     public String getOrder(@PathVariable("id") Long id) {
         ShitWishOrder order = shitWishOrderService.findById(id);
         JSONObject entity = new JSONObject();
+        JSONObject addressDetails = new JSONObject();
         entity.put("id", order.getOrder_id());
-        entity.put("zipcode", order.getZipcode());
-        entity.put("country", order.getCountry());
-        entity.put("city", order.getCity());
-        entity.put("street", order.getStreet());
+        addressDetails.put("zipcode", order.getZipcode());
+        addressDetails.put("country", order.getCountry());
+        addressDetails.put("city", order.getCity());
+        addressDetails.put("street;", order.getStreet());
+        entity.put("address", addressDetails);
         List<JSONObject> products = new ArrayList<JSONObject>();
         for (Map.Entry<Integer, Integer> entry: order.getProducts().entrySet()) {
             JSONObject lineItem = new JSONObject();
