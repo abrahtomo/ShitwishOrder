@@ -13,10 +13,8 @@ public class ShitWishOrder {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long order_id;
 
-    @JsonProperty("user_id")
     private long user_id;
 
-    @JsonProperty("products")
     @ElementCollection(targetClass = Integer.class)
     @CollectionTable(name = "Products")
     @MapKeyColumn(name="product_id")
