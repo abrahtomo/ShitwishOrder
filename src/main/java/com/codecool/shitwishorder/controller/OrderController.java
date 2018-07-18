@@ -29,6 +29,7 @@ public class OrderController {
         addressDetails.put("city", order.getCity());
         addressDetails.put("street;", order.getStreet());
         entity.put("address", addressDetails);
+        entity.put("user_id", order.getUser_id());
         List<JSONObject> products = new ArrayList<JSONObject>();
         for (Map.Entry<Integer, Integer> entry: order.getProducts().entrySet()) {
             JSONObject lineItem = new JSONObject();
