@@ -1,8 +1,11 @@
 package com.codecool.shitwishorder.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.json.JSONObject;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -40,8 +43,16 @@ public class ShitWishOrder {
         this.products = products;
     }
 
+    public ShitWishOrder(Map<Integer, Integer> products) {
+        this.products = products;
+    }
+
     public long getOrder_id() {
         return order_id;
+    }
+
+    public String getUser_id() {
+        return user_id;
     }
 
     public Map<Integer, Integer> getProducts() {
@@ -64,17 +75,18 @@ public class ShitWishOrder {
         return street;
     }
 
-    public String getUser_id() {
-        return user_id;
-    }
 
     public void setOrder_id(long order_id) {
         this.order_id = order_id;
     }
 
+
+
     public void setProducts(Map<Integer, Integer> products) {
         this.products = products;
     }
+
+
 
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
@@ -95,4 +107,6 @@ public class ShitWishOrder {
     public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
+
+
 }
