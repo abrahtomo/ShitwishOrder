@@ -4,21 +4,39 @@ import com.codecool.shitwishorder.model.ShitWishOrder;
 import com.codecool.shitwishorder.repository.ShitWishOrderRepository;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@Service
-public class ShitWishOrderService {
+@Component
+public class ShitWishOrderService  {
 
     @Autowired
     private Authenticator authenticator;
 
-
     @Autowired
     private ShitWishOrderRepository shitWishOrderRepository;
+
+
+    public Authenticator getAuthenticator() {
+        return authenticator;
+    }
+
+    public void setAuthenticator(Authenticator authenticator) {
+        this.authenticator = authenticator;
+    }
+
+    public ShitWishOrderRepository getShitWishOrderRepository() {
+        return shitWishOrderRepository;
+    }
+
+    public void setShitWishOrderRepository(ShitWishOrderRepository shitWishOrderRepository) {
+        this.shitWishOrderRepository = shitWishOrderRepository;
+    }
+
 
     public List<ShitWishOrder> findAll(){
         return shitWishOrderRepository.findAll();
@@ -27,6 +45,7 @@ public class ShitWishOrderService {
     public void deleteAll(){
         shitWishOrderRepository.deleteAll();
     }
+
 
     public ShitWishOrder saveOrder(ShitWishOrder order, String token){
 

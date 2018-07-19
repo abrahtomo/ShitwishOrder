@@ -13,8 +13,12 @@ import java.util.Map;
 @RestController
 public class OrderController {
 
-    @Autowired
     ShitWishOrderService shitWishOrderService;
+
+    @Autowired
+    public OrderController(ShitWishOrderService shitWishOrderService) {
+        this.shitWishOrderService = shitWishOrderService;
+    }
 
     @GetMapping(value = "/orders/{id}")
     public String getOrder(@PathVariable("id") Long id, @RequestHeader Map<String, String> header) {
