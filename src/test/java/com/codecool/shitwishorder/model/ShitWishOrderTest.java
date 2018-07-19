@@ -2,6 +2,9 @@ package com.codecool.shitwishorder.model;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ShitWishOrderTest {
@@ -38,4 +41,43 @@ class ShitWishOrderTest {
         assertThrows(IllegalArgumentException.class, ()-> {shitWishOrderTest.setStreet(null);});
     }
 
+    @Test
+    public void testZipCodeGetter(){
+        Map orderMap = new HashMap<Integer, Integer>();
+        orderMap.put(3, 3);
+        ShitWishOrder shitWishOrderTestGet = new ShitWishOrder("1111", "hu", "bp", "váci", orderMap);
+        assertEquals("1111", shitWishOrderTestGet.getZipcode());
+    }
+
+    @Test
+    public void testCountryGetter(){
+        Map orderMap = new HashMap<Integer, Integer>();
+        orderMap.put(3, 3);
+        ShitWishOrder shitWishOrderTestGet = new ShitWishOrder("1111", "hu", "bp", "váci", orderMap);
+        assertEquals("hu", shitWishOrderTestGet.getCountry());
+    }
+
+    @Test
+    public void testCityGetter(){
+        Map orderMap = new HashMap<Integer, Integer>();
+        orderMap.put(3, 3);
+        ShitWishOrder shitWishOrderTestGet = new ShitWishOrder("1111", "hu", "bp", "váci", orderMap);
+        assertEquals("bp", shitWishOrderTestGet.getCity());
+    }
+
+    @Test
+    public void testStreetGetter(){
+        Map orderMap = new HashMap<Integer, Integer>();
+        orderMap.put(3, 3);
+        ShitWishOrder shitWishOrderTestGet = new ShitWishOrder("1111", "hu", "bp", "váci", orderMap);
+        assertEquals("váci", shitWishOrderTestGet.getStreet());
+    }
+
+    @Test
+    public void testProductsGetter(){
+        Map orderMap = new HashMap<Integer, Integer>();
+        orderMap.put(3, 3);
+        ShitWishOrder shitWishOrderTestGet = new ShitWishOrder("1111", "hu", "bp", "váci", orderMap);
+        assertEquals(orderMap, shitWishOrderTestGet.getProducts());
+    }
 }
