@@ -16,6 +16,7 @@ public class OrderController {
     @Autowired
     ShitWishOrderService shitWishOrderService;
 
+    @CrossOrigin
     @GetMapping(value = "/orders/{id}")
     public String getOrder(@PathVariable("id") Long id, @RequestHeader Map<String, String> header) {
         if (shitWishOrderService.findById(id, header.get("Authorization")) != null) {
@@ -29,7 +30,7 @@ public class OrderController {
         }
     }
 
-
+    @CrossOrigin
     @PostMapping(value = "/orders")
     public String postOrder(@RequestParam("zipcode") String zipcode, @RequestParam("country") String country,
                             @RequestParam("city") String city, @RequestParam("street") String street,
