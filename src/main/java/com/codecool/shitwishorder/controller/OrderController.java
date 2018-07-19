@@ -18,6 +18,7 @@ public class OrderController {
     @Autowired
     ShitWishOrderService shitWishOrderService;
 
+    @CrossOrigin
     @GetMapping(value = "/orders/{id}")
     public ResponseEntity getOrder(@PathVariable("id") Long id, @RequestHeader Map<String, String> header) {
 
@@ -35,7 +36,7 @@ public class OrderController {
         }
     }
 
-
+    @CrossOrigin
     @PostMapping(value = "/orders")
     public ResponseEntity postOrder(@RequestParam("zipcode") String zipcode, @RequestParam("country") String country,
                             @RequestParam("city") String city, @RequestParam("street") String street,

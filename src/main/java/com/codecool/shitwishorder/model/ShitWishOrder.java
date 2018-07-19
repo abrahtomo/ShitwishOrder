@@ -41,6 +41,9 @@ public class ShitWishOrder {
         this.city = city;
         this.street = street;
         this.products = products;
+        if (zipcode == null || country == null || city == null || street == null || products == null){
+            throw new IllegalArgumentException("Invalid parameter");
+        }
     }
 
     public ShitWishOrder(Map<Integer, Integer> products) {
@@ -75,33 +78,43 @@ public class ShitWishOrder {
         return street;
     }
 
-
     public void setOrder_id(long order_id) {
         this.order_id = order_id;
     }
 
-
-
     public void setProducts(Map<Integer, Integer> products) {
         this.products = products;
+        if (products == null){
+            throw new IllegalArgumentException();
+        }
     }
-
-
 
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
+        if (zipcode == null){
+            throw new IllegalArgumentException();
+        }
     }
 
     public void setCountry(String country) {
         this.country = country;
+        if (country == null){
+            throw new IllegalArgumentException();
+        }
     }
 
     public void setCity(String city) {
         this.city = city;
+        if (city == null){
+            throw new IllegalArgumentException();
+        }
     }
 
     public void setStreet(String street) {
         this.street = street;
+        if (street == null){
+            throw new IllegalArgumentException();
+        }
     }
 
     public void setUser_id(String user_id) {
