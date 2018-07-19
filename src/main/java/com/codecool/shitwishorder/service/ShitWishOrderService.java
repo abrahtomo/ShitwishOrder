@@ -61,25 +61,4 @@ public class ShitWishOrderService {
         return token.split(" ")[1];
     }
 
-
-    public String jsonStringBuilder(ShitWishOrder order){
-        JSONObject entity = new JSONObject();
-        JSONObject addressDetails = new JSONObject();
-        entity.put("id", order.getOrder_id());
-        addressDetails.put("zipcode", order.getZipcode());
-        addressDetails.put("country", order.getCountry());
-        addressDetails.put("city", order.getCity());
-        addressDetails.put("street;", order.getStreet());
-        entity.put("address", addressDetails);
-        entity.put("user_id", order.getUser_id());
-        List<JSONObject> products = new ArrayList<JSONObject>();
-        for (Map.Entry<Integer, Integer> entry: order.getProducts().entrySet()) {
-            JSONObject lineItem = new JSONObject();
-            lineItem.put("id", entry.getKey());
-            lineItem.put("amount", entry.getValue());
-            products.add(lineItem);
-        }
-        entity.put("products", products);
-        return entity.toString();
-    }
 }
