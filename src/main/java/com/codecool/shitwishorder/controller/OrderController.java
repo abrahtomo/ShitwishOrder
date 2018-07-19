@@ -31,7 +31,7 @@ public class OrderController {
         else {
             JSONObject error = new JSONObject();
             error.put("error", "no such order, or invalid token");
-            ResponseEntity<String> response = new ResponseEntity(error.toString(), HttpStatus.BAD_REQUEST);
+            ResponseEntity<String> response = new ResponseEntity(error.toString(), HttpStatus.UNAUTHORIZED);
             return response;
         }
     }
@@ -54,7 +54,7 @@ public class OrderController {
          else {
             JSONObject error = new JSONObject();
             error.put("error", "no such order, or invalid token");
-            ResponseEntity<JSONObject> response = new ResponseEntity(error.toString(), HttpStatus.BAD_REQUEST);
+            ResponseEntity<JSONObject> response = new ResponseEntity(error.toString(), HttpStatus.UNAUTHORIZED);
             return response;
             }
         }
