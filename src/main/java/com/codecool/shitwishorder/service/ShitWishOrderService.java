@@ -32,7 +32,7 @@ public class ShitWishOrderService {
 
         String authToken = authenticator.getTokenString(token);
         String user_id = stripToken(authToken);
-        if (user_id.equals("Token Expired")|| user_id.equals("Invalid Token")){
+        if (authToken.equals("Token Expired")|| authToken.equals("Invalid Token")){
             return null;
         } else {
         order.setUser_id(user_id);
