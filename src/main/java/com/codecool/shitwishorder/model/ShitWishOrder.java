@@ -41,6 +41,9 @@ public class ShitWishOrder {
         this.city = city;
         this.street = street;
         this.products = products;
+        if (zipcode == null || country == null || city == null || street == null || products == null){
+            throw new IllegalArgumentException("Invalid parameter");
+        }
     }
 
     public ShitWishOrder(Map<Integer, Integer> products) {
