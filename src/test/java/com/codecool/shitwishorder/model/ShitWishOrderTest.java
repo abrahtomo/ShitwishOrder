@@ -5,11 +5,14 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
+import static javax.swing.UIManager.put;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ShitWishOrderTest {
 
-    private ShitWishOrder shitWishOrderTest = new ShitWishOrder();
+    Map orderMap = new HashMap<Integer, Integer>();
+    {{put(3, 3);}}
+    private ShitWishOrder shitWishOrderTest = new ShitWishOrder("1111", "hu", "bp", "váci", orderMap);
 
     @Test
     public void testIfConstructorThrowsException(){
@@ -43,41 +46,27 @@ class ShitWishOrderTest {
 
     @Test
     public void testZipCodeGetter(){
-        Map orderMap = new HashMap<Integer, Integer>();
-        orderMap.put(3, 3);
-        ShitWishOrder shitWishOrderTestGet = new ShitWishOrder("1111", "hu", "bp", "váci", orderMap);
-        assertEquals("1111", shitWishOrderTestGet.getZipcode());
+       assertEquals("1111", shitWishOrderTest.getZipcode());
     }
 
     @Test
     public void testCountryGetter(){
-        Map orderMap = new HashMap<Integer, Integer>();
-        orderMap.put(3, 3);
-        ShitWishOrder shitWishOrderTestGet = new ShitWishOrder("1111", "hu", "bp", "váci", orderMap);
-        assertEquals("hu", shitWishOrderTestGet.getCountry());
+       assertEquals("hu", shitWishOrderTest.getCountry());
     }
 
     @Test
     public void testCityGetter(){
-        Map orderMap = new HashMap<Integer, Integer>();
-        orderMap.put(3, 3);
-        ShitWishOrder shitWishOrderTestGet = new ShitWishOrder("1111", "hu", "bp", "váci", orderMap);
-        assertEquals("bp", shitWishOrderTestGet.getCity());
+        assertEquals("bp", shitWishOrderTest.getCity());
     }
 
     @Test
     public void testStreetGetter(){
-        Map orderMap = new HashMap<Integer, Integer>();
-        orderMap.put(3, 3);
-        ShitWishOrder shitWishOrderTestGet = new ShitWishOrder("1111", "hu", "bp", "váci", orderMap);
-        assertEquals("váci", shitWishOrderTestGet.getStreet());
+        assertEquals("váci", shitWishOrderTest.getStreet());
     }
 
     @Test
     public void testProductsGetter(){
-        Map orderMap = new HashMap<Integer, Integer>();
-        orderMap.put(3, 3);
-        ShitWishOrder shitWishOrderTestGet = new ShitWishOrder("1111", "hu", "bp", "váci", orderMap);
-        assertEquals(orderMap, shitWishOrderTestGet.getProducts());
+        assertEquals(orderMap, shitWishOrderTest.getProducts());
     }
+
 }
