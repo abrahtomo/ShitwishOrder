@@ -24,6 +24,8 @@ public class Authenticator {
 
 
     public String getTokenString(String token) {
+
+
         String ret = "";
         try {
             JwtConsumer jwtConsumer = new JwtConsumerBuilder()
